@@ -1,2 +1,2 @@
-net localgroup psacln | findstr "IWPD*" > C:\users.txt
-FOR /F %%A in (C:\users.txt) DO net localgroup secgroup %%A /add
+net localgroup psacln | findstr "IWPD*" > C:\NetStrap\users.txt
+FOR /F %%A in (C:\NetStrap\users.txt) DO net localgroup secgroup %%A /add
