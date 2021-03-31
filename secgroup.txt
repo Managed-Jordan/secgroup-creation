@@ -1,0 +1,2 @@
+net localgroup psacln | findstr "IWPD*" > C:\users.txt
+FOR /F %%A in (C:\users.txt) DO net localgroup secgroup %%A /add
