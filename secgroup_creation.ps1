@@ -27,5 +27,12 @@ icacls "C:\Windows\System32\cmd.exe" /deny "secgroup:RX"
 "Denying read and write permissions for powershell.exe for the secgroup user group..."
 icacls "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" /deny "secgroup:RX"
 
+#created a scheduled task to update the user list nightly
+" "
+"Creating scheduled task in Windows..."
+$action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument C:\NetStrap\secgroup.bat
+$trigger = New-ScheduledTaskTrigger -Daily -At 4am
+Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Daily Secgroup Update" -Description "Created by Managed.com"
+
 " "
 "Done! Please set up the scheduled task in Plesk and change ownership of cmd.exe and powershell.exe back to NT Service\TrustedInstaller"
