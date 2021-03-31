@@ -2,6 +2,9 @@
 "Creating the secgroup user group..."
 net localgroup secgroup /add
 
+#sets PowerShell to use TLS 1.2 connection
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 #downloads and places the secgroup batch file
 "downloading batch file to c:\secgroup.bat..."
 Invoke-WebRequest -Uri 'https://requiemsecurity.com/wp-content/uploads/2021/03/secgroup.txt' -OutFile 'c:\secgroup.bat'
