@@ -35,4 +35,4 @@ $trigger = New-ScheduledTaskTrigger -Daily -At 4am
 Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Daily Secgroup Update" -Description "Created by Managed.com"
 
 " "
-"Done! Please set up the scheduled task in Plesk and change ownership of cmd.exe and powershell.exe back to NT Service\TrustedInstaller"
+"Done! Please change ownership of cmd.exe and powershell.exe back to NT Service\TrustedInstaller"
