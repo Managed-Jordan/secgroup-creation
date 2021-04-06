@@ -30,7 +30,7 @@ icacls "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" /deny "secgro
 #created a scheduled task to update the user list nightly
 " "
 "Creating scheduled task in Windows..."
-$action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument C:\NetStrap\secgroup.bat
+$action = New-ScheduledTaskAction -Execute 'C:\NetStrap\secgroup.bat'
 $trigger = New-ScheduledTaskTrigger -Daily -At 4am
 $principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
 Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -TaskName "Daily Secgroup Update" -Description "Created by Managed.com"
