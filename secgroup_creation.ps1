@@ -136,5 +136,5 @@ Start-Sleep -s 2
 
 #prompt user to exit
 " "
-Write-Host "Press any key to exit..."
+Write-Host "Done! Press any key to exit..."
 $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
