@@ -7,7 +7,7 @@ net localgroup secgroup /add
 
 #downloads and places the secgroup batch file
 "downloading batch file to c:\netstrap\secgroup.bat..."
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Managed-Jordan/secgroup-creation/main/secgroup-update.ps1' -OutFile 'C:\NetStrap\secgroup-update.ps1'
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Managed-Jordan/secgroup-creation/main/secgroup_update.ps1' -OutFile 'C:\NetStrap\secgroup_update.ps1'
 
 #changes ownership of cmd.exe to the administrators group
 "Changing ownership of cmd.exe to administrators group..."
@@ -121,7 +121,7 @@ Set-Acl -Path $PATHNAME2 -AclObject $ACL2
 #created a scheduled task to update the user list nightly
 " "
 "Creating scheduled task in Windows..."
-$action = New-ScheduledTaskAction -Execute 'C:\NetStrap\secgroup-update.ps1'
+$action = New-ScheduledTaskAction -Execute 'C:\NetStrap\secgroup_update.ps1'
 $trigger = New-ScheduledTaskTrigger -Daily -At 4am
 $principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
 Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -TaskName "Daily Secgroup Update" -Description "Created by Managed.com"
