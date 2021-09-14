@@ -124,7 +124,7 @@ Set-Acl -Path $PATHNAME2 -AclObject $ACL2
 $action = New-ScheduledTaskAction -Execute 'powershell' -Argument 'C:\NetStrap\secgroup_update.ps1'
 $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At 4am
 $principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
-Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -TaskName "Daily Secgroup Update" -Description "Created by Managed.com"
+Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -TaskName "Weekly Secgroup Update" -Description "Created by Managed.com"
 
 #run newly-created task
 " "
