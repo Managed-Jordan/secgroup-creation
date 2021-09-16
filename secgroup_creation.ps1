@@ -129,7 +129,7 @@ Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -
 #run newly-created task
 " "
 "Running task..."
-Start-ScheduledTask -TaskName "Daily Secgroup Update"
+Start-ScheduledTask -TaskName "Weekly Secgroup Update"
 
 #sleep 2 seconds
 Start-Sleep -s 2
