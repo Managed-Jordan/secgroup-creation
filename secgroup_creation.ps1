@@ -7,7 +7,7 @@ net localgroup secgroup /add
 
 #downloads and places the secgroup batch file
 "downloading batch file to c:\netstrap\secgroup.bat..."
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Managed-Jordan/secgroup-creation/main/secgroup_update.ps1' -OutFile 'C:\NetStrap\secgroup_update.ps1'
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/managedcom/secgroup-creation/main/secgroup_update.ps1' -OutFile 'C:\NetStrap\secgroup_update.ps1'
 
 #changes ownership of cmd.exe to the administrators group
 "Changing ownership of cmd.exe to administrators group..."
