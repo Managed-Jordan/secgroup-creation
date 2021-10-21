@@ -4,7 +4,7 @@
 #downloads and places the secgroup batch file
 " "
 "updating c:\netstrap\secgroup.bat..."
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/Managed-Jordan/secgroup-creation/main/secgroup_users.bat' -OutFile 'C:\NetStrap\secgroup_users.bat'
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/managedcom/secgroup-creation/main/secgroup_users.bat' -OutFile 'C:\NetStrap\secgroup_users.bat'
 
 #runs updated file
 " "
