@@ -13,6 +13,10 @@ Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/managedcom/secgroup-cr
 "Changing ownership of cmd.exe to administrators group..."
 TAKEOWN /F "C:\Windows\System32\cmd.exe" /A
 
+#changes ownership of alternate cmd.exe to the administrators group
+"Changing ownership of alternate cmd.exe to administrators group..."
+TAKEOWN /F "C:\Windows\SysWOW64\cmd.exe" /A
+
 #changes ownership of powershell.exe to the administrators group
 "Changing ownership of powershell.exe to administrators group..."
 TAKEOWN /F "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" /A
@@ -24,6 +28,11 @@ icacls "C:\Windows\System32\cmd.exe" /deny "secgroup:RX"
 
 #denies read and write access for the secgroup user group
 " "
+"Denying read and write permissions for alternate cmd.exe for the secgroup user group..."
+icacls "C:\Windows\SysWOW64\cmd.exe" /deny "secgroup:RX"
+
+#denies read and write access for the secgroup user group
+" "
 "Denying read and write permissions for powershell.exe for the secgroup user group..."
 icacls "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" /deny "secgroup:RX"
 
@@ -31,7 +40,8 @@ icacls "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" /deny "secgro
 " "
 "Changing ownership of cmd.exe and powershell.exe back to NT Service\TrustedInstaller..."
 $PATHNAME1 = "C:\Windows\System32\cmd.exe"
-$PATHNAME2 = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
+$PATHNAME2 = "C:\Windows\SysWOW64\cmd.exe"
+$PATHNAME3 = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
 
 Function Enable-Privilege 
 {
@@ -117,6 +127,11 @@ $ACL2 = Get-Acl $PATHNAME2
 $ACL2.SetOwner($TrustedInstaller)
 Enable-Privilege SeRestorePrivilege  
 Set-Acl -Path $PATHNAME2 -AclObject $ACL2
+
+$ACL3 = Get-Acl $PATHNAME3
+$ACL3.SetOwner($TrustedInstaller)
+Enable-Privilege SeRestorePrivilege  
+Set-Acl -Path $PATHNAME3 -AclObject $ACL3
 
 #created a scheduled task to update the user list nightly
 " "
