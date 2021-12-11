@@ -143,11 +143,18 @@ Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -
 
 #run newly-created task
 " "
-"Running task..."
+"Running task. This may take several minutes..."
 Start-ScheduledTask -TaskName "Weekly Secgroup Update"
 
-#sleep 2 seconds
-Start-Sleep -s 2
+#makes sure the task runs properly
+$timeout = 120 ##  seconds
+  $timer =  [Diagnostics.Stopwatch]::StartNew()
+  while (((Get-ScheduledTask -TaskName 'Weekly Secgroup Update').State -ne  'Running') -and  ($timer.Elapsed.TotalSeconds -lt $timeout)) {    
+  Write-Verbose  -Message "Waiting on scheduled task..."
+  Start-Sleep -Seconds  3   
+  }
+  $timer.Stop()
+  Write-Verbose  -Message "We waited [$($timer.Elapsed.TotalSeconds)] seconds on the task 'Weekly Secgroup Update'"
 
 #prompt user to exit
 " "
