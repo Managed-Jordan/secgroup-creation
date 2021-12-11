@@ -147,7 +147,7 @@ Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -
 Start-ScheduledTask -TaskName "Weekly Secgroup Update"
 
 #makes sure the task runs properly
-$timeout = 120 ##  seconds
+$timeout = 180 ##  seconds
   $timer =  [Diagnostics.Stopwatch]::StartNew()
   while (((Get-ScheduledTask -TaskName 'Weekly Secgroup Update').State -ne  'Ready') -and  ($timer.Elapsed.TotalSeconds -lt $timeout)) {    
   Write-Verbose  -Message "Waiting on scheduled task..."
