@@ -149,12 +149,12 @@ Start-ScheduledTask -TaskName "Weekly Secgroup Update"
 #makes sure the task runs properly
 $timeout = 120 ##  seconds
   $timer =  [Diagnostics.Stopwatch]::StartNew()
-  while (((Get-ScheduledTask -TaskName 'Weekly Secgroup Update').State -ne  'Running') -and  ($timer.Elapsed.TotalSeconds -lt $timeout)) {    
+  while (((Get-ScheduledTask -TaskName 'Weekly Secgroup Update').State -ne  'Ready') -and  ($timer.Elapsed.TotalSeconds -lt $timeout)) {    
   Write-Verbose  -Message "Waiting on scheduled task..."
   Start-Sleep -Seconds  3   
   }
   $timer.Stop()
-  Write-Verbose  -Message "We waited [$($timer.Elapsed.TotalSeconds)] seconds on the task 'Weekly Secgroup Update'"
+  Write-Verbose  -Message "ERROR: We waited [$($timer.Elapsed.TotalSeconds)] seconds on the task 'Weekly Secgroup Update' but it did not complete in this time. Please check the task's status."
 
 #prompt user to exit
 " "
